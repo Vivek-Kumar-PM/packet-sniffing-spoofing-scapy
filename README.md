@@ -1,65 +1,84 @@
-======================================================================
-         SCAPY ENVIRONMENT SETUP & EXECUTION GUIDE (FIRST TIME USE)
-======================================================================
+# Packet Sniffing & Spoofing Tool (Python / Scapy)
 
-Follow these instructions in order inside  Linux Virtual Machine 
-Terminal (Ctrl + Alt + T) to set up and run the network script.
+An educational network security tool that **captures live traffic** and **crafts spoofed packets** (TCP and ICMP), built and tested in an isolated virtual lab and validated with Wireshark.
 
-----------------------------------------------------------------------
-PHASE 1: FIRST-TIME INSTALLATION & INITIAL SETUP
-----------------------------------------------------------------------
-Run these commands one by one to configure  Python environment 
-and install Scapy dependencies on the Linux filesystem.
+> Built by Vivek Kumar for the *Lab of Computer Security* course, Ca' Foscari University of Venice (2026).
 
-1. Update system packages and install Python environment tools:
-   sudo apt update && sudo apt install python3-venv python3-pip -y
+---
 
-2. Move to  home directory:
-   cd ~
+## What it does
 
-3. Create a clean virtual environment named 'scapy-env':
-   python3 -m venv scapy-env
+- **Sniffer:** captures packets on the network interface and shows their headers and payload (e.g. a readable HTTP `GET` request).
+- **IP spoofer:** sends packets with a **forged source IP address**:
+  - TCP packets with custom flags (SYN, FIN)
+  - ICMP echo requests (ping)
+- **Validation:** every result was verified independently in **Wireshark**.
 
-4. Activate the virtual environment workspace:
-   source ~/scapy-env/bin/activate
-   (Note:  terminal line will now start with '(scapy-env)')
+## Proof (Wireshark validation)
 
-5. Navigate to  shared project folder:
-   cd /media/sf_spoofing_code
+| Screenshot | What it shows |
+|---|---|
+| ![Sniffer](Proof/01-sniffer-http-capture.png) | **Sniffer** capturing a real HTTP request from the VM, with the payload visible |
+| ![TCP SYN](Proof/02-spoofed-tcp-syn.png) | **Spoofed TCP SYN** sent from the fake IP `10.0.2.99` instead of the VM's real IP `10.0.2.15` |
+| ![TCP FIN](Proof/03-spoofed-tcp-fin.png) | Same spoofed packet with a **different TCP flag (FIN)**: custom packet crafting |
+| ![ICMP](Proof/04-spoofed-icmp.png) | **Spoofed ICMP ping** from the fake IP |
+| ![Validation](Proof/05-spoofed-ping-validation.png) | Wireshark filter `ip.src==10.0.2.99`: spoofed pings with *"no response found"*, as expected, since replies go to an address that doesn't exist |
 
-6. Upgrade pip and install Scapy along with  script dependencies:
-   pip install --upgrade pip
-   pip install scapy
-   pip install -r requirements.txt
+**Key observation:** the packets leave from the VM's real MAC address but carry a fake IP address, which demonstrates that the spoofing happens at the IP layer.
 
-7. Grant  user account permissions to read the shared folder files:
-   sudo usermod -aG vboxsf $USER
+## Tech stack
 
-CRUCIAL STEP: Now, RESTART  Virtual Machine so the shared folder 
-permissions can take effect.
+- **Python 3** with **Scapy**
+- **Linux Mint** virtual machine on **Oracle VirtualBox** (NAT network)
+- **Wireshark** for packet analysis and validation
 
-----------------------------------------------------------------------
-PHASE 2: HOW TO RUN  CODE (DAILY USE PRESETS)
-----------------------------------------------------------------------
-Once the installation is complete, use these steps every time you 
-boot up  VM to execute  attack or sniffer scripts.
+## Project structure
 
-1. Open  terminal (Ctrl + Alt + T).
+```
+├── main.py            # Entry point
+├── sniffer/           # Packet capture
+├── spoofer/           # Spoofed packet crafting (TCP, ICMP)
+├── utils/             # Shared helper functions
+├── Proof/             # Wireshark screenshots
+├── result2.pcapng     # Raw packet capture from the lab
+├── result2.txt        # Capture output
+├── wireshark.txt      # Wireshark notes
+├── setup.md           # Detailed setup guide
+└── requirements.txt   # Python dependencies
+```
 
-2. Switch to  project code folder:
-   cd /media/sf_spoofing_code
+## How to run
 
-3. Run  script with full administrative root privileges:
-   sudo /home/osboxes/scapy-env/bin/python main.py
+Run inside a **Linux virtual machine**. Sending raw packets needs root privileges.
 
-----------------------------------------------------------------------
-TROUBLESHOOTING NOTES:
-----------------------------------------------------------------------
-* To STOP the script from running at any time: Press 'Ctrl + C'.
-* If asked for a password after typing 'sudo': Type  Linux user 
-  password (e.g., 'osboxes') and press Enter. The characters will not 
-  show on the screen while you type.
-* Do NOT create or run the virtual environment folders inside the 
-  /media/ directory, as the shared Windows filesystem will corrupt 
-  the Python internal binaries. Keep the environment inside 'cd ~'.
-======================================================================
+```bash
+# 1. Create and activate a virtual environment
+python3 -m venv ~/scapy-env
+source ~/scapy-env/bin/activate
+
+# 2. Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# 3. Run (root needed for raw sockets)
+sudo ~/scapy-env/bin/python main.py
+```
+
+Press `Ctrl + C` to stop. See [setup.md](setup.md) for the full step-by-step guide.
+
+## Skills demonstrated
+
+- **Network programming:** packet capture and crafting with Python and Scapy
+- **Lab setup:** virtual environment with VirtualBox, Linux Mint, NAT networking and shared folders
+- **Validation:** independent verification of results in Wireshark
+- **Documentation:** technical report, setup guide and project defense
+
+## What I learned
+
+- How packets are structured layer by layer (Ethernet → IP → TCP/ICMP → payload)
+- Why IP spoofing works, and why responses never return to the attacker
+- How to verify technical claims with independent evidence, not just program output
+
+## Disclaimer
+
+This project is for **educational purposes only** and was run exclusively in an **isolated virtual lab**. Do not use it on networks you do not own or have explicit permission to test.
