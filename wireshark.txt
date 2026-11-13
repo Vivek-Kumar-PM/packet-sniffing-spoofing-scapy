@@ -1,0 +1,246 @@
+================================================================
+   WIRESHARK COMPLETE INSTALLATION & SETUP GUIDE
+   Packet Sniffing & Spoofing Project — Kali Linux VM
+================================================================
+
+----------------------------------------------------------------
+STEP 1 — UPDATE SYSTEM
+----------------------------------------------------------------
+sudo apt update && sudo apt upgrade -y
+
+
+----------------------------------------------------------------
+STEP 2 — INSTALL WIRESHARK
+----------------------------------------------------------------
+sudo apt install wireshark -y
+
+During installation a screen will appear asking:
+"Should non-superusers be able to capture packets?"
+→ Select YES using arrow keys and press ENTER
+
+
+----------------------------------------------------------------
+STEP 3 — ADD USER TO WIRESHARK GROUP
+----------------------------------------------------------------
+sudo usermod -aG wireshark $USER
+
+
+----------------------------------------------------------------
+STEP 4 — INSTALL TSHARK (Terminal version of Wireshark)
+----------------------------------------------------------------
+sudo apt install tshark -y
+
+
+----------------------------------------------------------------
+STEP 5 — VERIFY INSTALLATION
+----------------------------------------------------------------
+wireshark --version
+tshark --version
+
+You should see version numbers printed for both
+
+
+----------------------------------------------------------------
+STEP 6 — REBOOT THE VM
+----------------------------------------------------------------
+sudo reboot
+
+After reboot open terminal and continue below
+
+
+----------------------------------------------------------------
+STEP 7 — VERIFY NETWORK INTERFACE
+----------------------------------------------------------------
+ip addr show
+
+Look for this in the output:
+2: enp0s3: <BROADCAST,MULTICAST,UP>
+  inet 10.0.2.15
+    ↑
+  This is interface name and IP address
+
+
+----------------------------------------------------------------
+STEP 8 — OPEN TWO TERMINALS SIDE BY SIDE
+----------------------------------------------------------------
+Right click Kali desktop → Open Terminal
+Open a second terminal the same way
+Place them side by side on screen:
+
+Terminal 1 (LEFT)     Terminal 2 (RIGHT)
+─────────────────     ─────────────────
+For Wireshark       For main.py script
+
+
+----------------------------------------------------------------
+STEP 9 — START WIRESHARK (Terminal 1)
+----------------------------------------------------------------
+sudo wireshark &
+
+The & runs Wireshark in background
+so terminal stays free to use
+
+
+----------------------------------------------------------------
+STEP 10 — SELECT INTERFACE IN WIRESHARK
+----------------------------------------------------------------
+Wireshark welcome screen will show a list of interfaces:
+
+ 🔵 enp0s3  10.0.2.15  ▁▃▅▇ (traffic activity)
+ 🔵 lo    127.0.0.1  flat (no traffic)
+
+→ Double click enp0s3 to start capturing immediately
+
+
+----------------------------------------------------------------
+STEP 11 — VERIFY WIRESHARK IS CAPTURING
+----------------------------------------------------------------
+In Terminal 2 run a test ping:
+
+ping 10.0.2.1 -c 4
+
+You should immediately see ICMP packets appear
+in the Wireshark window like this:
+
+No. Time  Source   Destination Protocol Info
+1  0.000  10.0.2.15  10.0.2.1  ICMP   Echo request
+2  0.001  10.0.2.1  10.0.2.15  ICMP   Echo reply
+3  0.002  10.0.2.15  10.0.2.1  ICMP   Echo request
+4  0.003  10.0.2.1  10.0.2.15  ICMP   Echo reply
+
+If you see these → Wireshark is working correctly ✅
+
+
+----------------------------------------------------------------
+STEP 12 — APPLY DISPLAY FILTER IN WIRESHARK
+----------------------------------------------------------------
+Look for the filter bar at the TOP of Wireshark window
+
+Type filter and press ENTER:
+
+For sniffing demo     → ip
+For SYN spoofing     → tcp.flags.syn==1
+For FIN spoofing     → tcp.flags.fin==1
+For ICMP fake ping    → icmp
+For ICMP flood      → icmp && ip.src==10.0.2.99
+For all spoofed packets  → ip.src==10.0.2.99
+To clear filter      → delete text and press ENTER
+
+Bar turns GREEN = filter is valid  ✅
+Bar turns RED  = filter is invalid ❌
+
+
+----------------------------------------------------------------
+STEP 13 — RUN PROJECT (Terminal 2)
+----------------------------------------------------------------
+cd /home/kali/scapy-project
+source scapy-env/bin/activate
+sudo python3 main.py
+
+Script will guide you step by step
+Press ENTER at each prompt to proceed
+
+
+----------------------------------------------------------------
+STEP 14 — TAKE SCREENSHOTS AT EACH STEP
+----------------------------------------------------------------
+Script prints this after each step:
+[✓] Step X Complete — Take Wireshark screenshot now!
+
+Take screenshot before pressing ENTER to continue
+
+Screenshot 1 → Step 1 Sniffing  → Filter: ip
+Screenshot 2 → Step 2 SYN Spoof  → Filter: tcp.flags.syn==1
+Screenshot 3 → Step 3 FIN Spoof  → Filter: tcp.flags.fin==1
+Screenshot 4 → Step 4 Fake Ping  → Filter: icmp
+Screenshot 5 → Step 5 ICMP Flood → Filter: icmp && ip.src==10.0.2.99
+
+
+----------------------------------------------------------------
+STEP 15 — FIX PERMISSION DENIED (If occurs)
+----------------------------------------------------------------
+If Wireshark says permission denied:
+
+sudo chmod 644 ~/Downloads/result2.pcapng
+
+
+----------------------------------------------------------------
+STEP 16 — SAVE CAPTURE FILE
+----------------------------------------------------------------
+In Wireshark menu:
+File → Save As → result2.pcapng → Click Save
+
+
+----------------------------------------------------------------
+STEP 17 — CONVERT PCAPNG TO TEXT FILE
+----------------------------------------------------------------
+sudo chmod 644 ~/Downloads/result2.pcapng
+tshark -r ~/Downloads/result2.pcapng > ~/Downloads/result2.txt
+
+
+----------------------------------------------------------------
+STEP 18 — READ THE TEXT FILE
+----------------------------------------------------------------
+cat ~/Downloads/result2.txt
+
+Or read page by page:
+cat ~/Downloads/result2.txt | less
+Press SPACE to scroll down
+Press Q to quit
+
+
+----------------------------------------------------------------
+QUICK TROUBLESHOOTING
+----------------------------------------------------------------
+Problem     → Solution
+─────────────────────────────────────────────────────────────
+Permission denied on pcapng 
+         → sudo chmod 644 ~/Downloads/result2.pcapng
+
+eth0 not found  
+         → Use enp0s3 instead
+
+Wireshark not opening    
+         → sudo wireshark &
+
+tshark not found 
+         → sudo apt install tshark -y
+
+No packets showing in Wireshark
+         → Run: sudo ip link set enp0s3 up
+          Then: ping 10.0.2.1 -c 4
+
+vboxsf permission denied   
+         → sudo usermod -aG vboxsf $USER
+          Then: sudo reboot
+
+Interface showing no traffic 
+         → Make sure you selected enp0s3
+          NOT lo (loopback)
+
+
+================================================================
+SUMMARY — COMMANDS IN ORDER
+================================================================
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install wireshark tshark -y
+sudo usermod -aG wireshark $USER
+sudo reboot
+ip addr show
+sudo wireshark &
+[Double click enp0s3 in Wireshark]
+ping 10.0.2.1 -c 4
+[Verify packets appear in Wireshark]
+cd /home/kali/scapy-project
+source scapy-env/bin/activate
+sudo python3 main.py
+[Follow prompts and take screenshots]
+File → Save As → result2.pcapng
+sudo chmod 644 ~/Downloads/result2.pcapng
+tshark -r ~/Downloads/result2.pcapng > ~/Downloads/result2.txt
+cat ~/Downloads/result2.txt
+
+================================================================
+          GOOD LUCK WITH DEMO!
+================================================================

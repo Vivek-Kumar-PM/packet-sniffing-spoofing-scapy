@@ -1,0 +1,83 @@
+    1 0.000000000    10.0.2.15 → 8.8.8.8      DNS 100 Standard query 0xe551 AAAA connectivity-check.ubuntu.com OPT
+    2 0.017005351      8.8.8.8 → 10.0.2.15    DNS 268 Standard query response 0xe551 AAAA connectivity-check.ubuntu.com AAAA 2620:2d:4000:1::1099 AAAA 2620:2d:4002:1::197 AAAA 2620:2d:4002:1::196 AAAA 2620:2d:4000:1::1100 AAAA 2620:2d:4002:1::198 AAAA 2620:2d:4000:1::1101 OPT
+    3 0.056860217 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1099 TCP 94 53378 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=3753603843 TSecr=0 WS=128
+    4 0.063874669 2620:2d:4000:1::1099 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 53378 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+    5 0.090996974 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::197 TCP 94 48282 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=730718630 TSecr=0 WS=128
+    6 0.097095489 2620:2d:4002:1::197 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 48282 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+    7 0.110189449 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::196 TCP 94 35616 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=1747687268 TSecr=0 WS=128
+    8 0.116967161 2620:2d:4002:1::196 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 35616 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+    9 0.143133280 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1100 TCP 94 40936 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=1247971233 TSecr=0 WS=128
+   10 0.149166391 2620:2d:4000:1::1100 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 40936 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   11 0.163139394 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::198 TCP 94 42950 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=2542319358 TSecr=0 WS=128
+   12 0.167161188 2620:2d:4002:1::198 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 42950 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   13 0.182297490 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1101 TCP 94 38018 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=4132561566 TSecr=0 WS=128
+   14 0.186248010 2620:2d:4000:1::1101 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 38018 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   15 2.360701562      fe80::2 → ff02::1      ICMPv6 110 Router Advertisement from 52:56:00:00:00:02
+   16 2.375034846 fe80::4ee6:c882:f615:10c5 → ff02::16     ICMPv6 150 Multicast Listener Report Message v2
+   17 3.165286536 fe80::4ee6:c882:f615:10c5 → ff02::16     ICMPv6 150 Multicast Listener Report Message v2
+   18 5.404527338 fe80::4ee6:c882:f615:10c5 → fe80::2      ICMPv6 86 Neighbor Solicitation for fe80::2 from 08:00:27:28:ba:13
+   19 5.407720960 PCSSystemtec_28:ba:13 → 52:55:0a:00:02:02 ARP 42 Who has 10.0.2.2? Tell 10.0.2.15
+   20 5.412254248      fe80::2 → fe80::4ee6:c882:f615:10c5 ICMPv6 86 Neighbor Advertisement fe80::2 (rtr, sol, ovr) is at 52:56:00:00:00:02
+   21 5.413758263 52:55:0a:00:02:02 → PCSSystemtec_28:ba:13 ARP 64 10.0.2.2 is at 52:55:0a:00:02:02
+   22 65.241912862 fd17:625c:f037:2:2991:19b6:fd7c:504e → ff02::fb     MDNS 180 Standard query 0x0000 PTR _ftp._tcp.local, "QM" question PTR _nfs._tcp.local, "QM" question PTR _afpovertcp._tcp.local, "QM" question PTR _smb._tcp.local, "QM" question PTR _sftp-ssh._tcp.local, "QM" question PTR _webdavs._tcp.local, "QM" question PTR _webdav._tcp.local, "QM" question
+   23 65.245888538    10.0.2.15 → 224.0.0.251  MDNS 160 Standard query 0x0000 PTR _ftp._tcp.local, "QM" question PTR _nfs._tcp.local, "QM" question PTR _afpovertcp._tcp.local, "QM" question PTR _smb._tcp.local, "QM" question PTR _sftp-ssh._tcp.local, "QM" question PTR _webdavs._tcp.local, "QM" question PTR _webdav._tcp.local, "QM" question
+   24 77.793990089 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   25 79.830824711    10.0.2.99 → 10.0.2.1     TCP 54 20 → 80 [SYN] Seq=0 Win=8192 Len=0
+   26 89.998106226    10.0.2.15 → 8.8.8.8      DNS 100 Standard query 0x6b6f A connectivity-check.ubuntu.com OPT
+   27 90.018078520      8.8.8.8 → 10.0.2.15    DNS 196 Standard query response 0x6b6f A connectivity-check.ubuntu.com A 91.189.91.97 A 185.125.190.99 A 185.125.190.100 A 91.189.91.98 A 91.189.91.96 A 185.125.190.101 OPT
+   28 90.023061531    10.0.2.15 → 91.189.91.97 TCP 74 58300 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM TSval=1717797245 TSecr=0 WS=128
+   29 90.129223595 91.189.91.97 → 10.0.2.15    TCP 60 80 → 58300 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0 MSS=1460
+   30 90.131160004    10.0.2.15 → 91.189.91.97 TCP 54 58300 → 80 [ACK] Seq=1 Ack=1 Win=64240 Len=0
+   31 90.135885033    10.0.2.15 → 91.189.91.97 HTTP 142 GET / HTTP/1.1 
+   32 90.138164953 91.189.91.97 → 10.0.2.15    TCP 60 80 → 58300 [ACK] Seq=1 Ack=89 Win=65535 Len=0
+   33 90.242038712 91.189.91.97 → 10.0.2.15    HTTP 133 HTTP/1.1 204 No Content 
+   34 90.242056880 91.189.91.97 → 10.0.2.15    TCP 60 80 → 58300 [FIN, ACK] Seq=80 Ack=89 Win=65535 Len=0
+   35 90.242182936    10.0.2.15 → 91.189.91.97 TCP 54 58300 → 80 [ACK] Seq=89 Ack=80 Win=64161 Len=0
+   36 90.243228843    10.0.2.15 → 91.189.91.97 TCP 54 58300 → 80 [FIN, ACK] Seq=89 Ack=81 Win=64160 Len=0
+   37 90.244015370 91.189.91.97 → 10.0.2.15    TCP 60 80 → 58300 [ACK] Seq=81 Ack=90 Win=65535 Len=0
+   38 98.691156831 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   39 100.713842362    10.0.2.99 → 10.0.2.1     TCP 54 [TCP Retransmission] 20 → 80 [FIN] Seq=0 Win=8192 Len=0
+   40 100.870178329 52:55:0a:00:02:02 → Broadcast    ARP 60 Who has 10.0.2.99? Tell 10.0.2.2
+   41 182.039944133 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   42 184.066240586    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   43 253.524898392 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   44 255.557986532    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   45 255.589887810 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   46 257.614868913    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   47 257.657230937 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   48 259.694236336    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   49 259.736751249 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   50 261.766741357    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   51 261.811096809 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   52 263.837838793    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   53 263.885128486 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   54 265.921200059    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   55 265.957236890 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   56 267.982861134    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   57 268.014567597 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   58 270.045314045    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   59 270.089680677 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   60 272.109847590    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   61 272.154590995 PCSSystemtec_28:ba:13 → Broadcast    ARP 42 Who has 10.0.2.1? Tell 10.0.2.15
+   62 274.185224803    10.0.2.99 → 10.0.2.1     ICMP 42 Echo (ping) request  id=0x0000, seq=0/0, ttl=64
+   63 300.003115116    10.0.2.15 → 8.8.8.8      DNS 100 Standard query 0x3532 AAAA connectivity-check.ubuntu.com OPT
+   64 300.018032006      8.8.8.8 → 10.0.2.15    DNS 268 Standard query response 0x3532 AAAA connectivity-check.ubuntu.com AAAA 2620:2d:4002:1::196 AAAA 2620:2d:4000:1::1101 AAAA 2620:2d:4002:1::197 AAAA 2620:2d:4002:1::198 AAAA 2620:2d:4000:1::1099 AAAA 2620:2d:4000:1::1100 OPT
+   65 300.021017677 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::196 TCP 94 39190 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=1747987179 TSecr=0 WS=128
+   66 300.021939763 2620:2d:4002:1::196 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 39190 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   67 300.024109838 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1101 TCP 94 40406 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=4132861407 TSecr=0 WS=128
+   68 300.024932420 2620:2d:4000:1::1101 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 40406 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   69 300.026974482 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::197 TCP 94 49594 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=731018566 TSecr=0 WS=128
+   70 300.027970637 2620:2d:4002:1::197 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 49594 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   71 300.030159998 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4002:1::198 TCP 94 39784 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=2542619225 TSecr=0 WS=128
+   72 300.041050064 2620:2d:4002:1::198 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 39784 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   73 300.042795850 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1099 TCP 94 52844 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=3753903829 TSecr=0 WS=128
+   74 300.044075703 2620:2d:4000:1::1099 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 52844 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   75 300.046139566 fd17:625c:f037:2:cf9e:f3be:ae38:4152 → 2620:2d:4000:1::1100 TCP 94 49000 → 80 [SYN] Seq=0 Win=64800 Len=0 MSS=1440 SACK_PERM TSval=1248271136 TSecr=0 WS=128
+   76 300.046940068 2620:2d:4000:1::1100 → fd17:625c:f037:2:cf9e:f3be:ae38:4152 TCP 74 80 → 49000 [RST, ACK] Seq=1 Ack=1 Win=65535 Len=0
+   77 305.436577348 PCSSystemtec_28:ba:13 → 52:55:0a:00:02:02 ARP 42 Who has 10.0.2.2? Tell 10.0.2.15
+   78 305.438019033 fe80::4ee6:c882:f615:10c5 → fe80::2      ICMPv6 86 Neighbor Solicitation for fe80::2 from 08:00:27:28:ba:13
+   79 305.439081431 52:55:0a:00:02:02 → PCSSystemtec_28:ba:13 ARP 64 10.0.2.2 is at 52:55:0a:00:02:02
+   80 305.439121680      fe80::2 → fe80::4ee6:c882:f615:10c5 ICMPv6 86 Neighbor Advertisement fe80::2 (rtr, sol, ovr) is at 52:56:00:00:00:02
+   81 308.305057758      fe80::2 → ff02::1      ICMPv6 110 Router Advertisement from 52:56:00:00:00:02
+   82 308.310194496 fe80::4ee6:c882:f615:10c5 → ff02::16     ICMPv6 150 Multicast Listener Report Message v2
+   83 309.148874582 fe80::4ee6:c882:f615:10c5 → ff02::16     ICMPv6 150 Multicast Listener Report Message v2
